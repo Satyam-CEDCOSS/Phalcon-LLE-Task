@@ -83,15 +83,15 @@ $container->set(
     }
 );
 
-// $container->set(
-//     'mongo',
-//     function () {
-//         $mongo = new MongoClient();
+$container->set(
+    'mongo',
+    function () {
+        $mongo = new MongoClient();
 
-//         return $mongo->selectDB('phalt');
-//     },
-//     true
-// );
+        return $mongo->selectDB('phalt');
+    },
+    true
+);
 
 $application = new Application($container);
 

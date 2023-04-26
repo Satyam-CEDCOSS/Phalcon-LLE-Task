@@ -14,7 +14,7 @@ class LoginController extends Controller
 
     public function loginAction()
     {
-        if ($_POST['email'] && $_POST['password']){
+        if ($_POST['email'] && $_POST['password']) {
             $sql = 'SELECT * FROM Users WHERE email = :email: AND password = :password:';
             $query = $this->modelsManager->createQuery($sql);
             $escaper = new myescaper();
@@ -26,19 +26,18 @@ class LoginController extends Controller
             );
             if (isset($cars[0])) {
                 $this->view->message = "success";
-                $this->view->name = "Hello ".$cars[0]->name;
+                $this->view->name = "Hello " . $cars[0]->name;
             } else {
                 $this->logger
-                ->excludeAdapters(['signup'])
-                ->warning("Fill Valid Detail Email: ".$_POST["email"]." Password ".$_POST["password"]);
+                    ->excludeAdapters(['signup'])
+                    ->warning("Fill Valid Detail Email: " . $_POST["email"] . " Password " . $_POST["password"]);
                 $this->view->message = "error";
             }
-        }
-        else{
+        } else {
             $this->logger
                 ->excludeAdapters(['signup'])
-                ->warning("Fill All Detail Email: ".$_POST["email"]." Password ".$_POST["password"]);
-                $this->view->message = "error";
+                ->warning("Fill All Detail Email: " . $_POST["email"] . " Password " . $_POST["password"]);
+            $this->view->message = "error";
         }
     }
 }
